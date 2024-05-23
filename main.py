@@ -1,29 +1,6 @@
 import json
 import os
-
-
-def persoane():
-    persoane = [
-        {
-            "nume": "",
-            "prenume":"",
-            "varsta":""
-        }
-    ]
-    with open("tema_curs15/Tema/problema1.json","w") as file:
-        n=int(input("Va rog sa introduceti nr de persoane: "))
-        for i in range(n):
-            nume=(input(f"Va rog sa introduceti numele persoanei cu nr. {i} "))
-            prenume=(input(f"Va rog sa introduceti prenumele persoanei cu nr. {i} "))
-            varsta=(input(f"Va rog sa introduceti varsta persoanei cu nr. {i} "))
-            for pers in persoane:
-                pers['nume']=nume
-                pers['prenume']=prenume
-                pers['varsta']=varsta
-                json.dump(persoane,file)
-
-# persoane()
-
+import csv
 
 def persoane1():
     persoane = []
@@ -37,6 +14,16 @@ def persoane1():
             persoane.append(Data)
         json.dump(persoane,file)
 
-persoane1()
+#persoane1()
 
 
+
+import pandas as pd
+
+def jsontocsv():
+    with open("tema_curs15/Tema/problema1.json", encoding='utf-8') as inputfile:
+        df = pd.read_json(inputfile)
+
+    df.to_csv("tema_curs15/Tema/output.csv", encoding='utf-8', index=False)
+
+jsontocsv()
